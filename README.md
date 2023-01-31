@@ -12,6 +12,12 @@ Overview
 
 Note that these are **potential** uses, so far I haven't tried those things out...if you have then let me know what worked and what didn't work.
 
+Testing
+-------
+**SkikoGraphics2D** is being tested using [Graphics2D Tester](https://github.com/jfree/graphics2d-tester) and produces the output shown below and now matches Java2D quite closely:
+
+![skikographics2d](https://user-images.githubusercontent.com/1835893/215668306-23de3152-5e04-4679-9315-7bdd641227a8.png)
+
 Include
 -------
 To include `SkikoGraphics2D` in your own project, add the following Maven dependency:
