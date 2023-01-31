@@ -2006,7 +2006,7 @@ class SkikoGraphics2D : Graphics2D {
             if (clone) cloneShape(s) else s
         } else try {
             transform.createInverse().createTransformedShape(s)
-        } catch (nite: NoninvertibleTransformException) {
+        } catch (e: NoninvertibleTransformException) {
             null
         }
     }
@@ -2016,8 +2016,8 @@ class SkikoGraphics2D : Graphics2D {
             return null
         }
         if (s is Rectangle2D) {
-            return Rectangle2D.Double().also {
-                it.setRect(s)
+            return Rectangle2D.Double().apply {
+                setRect(s)
             }
         }
         return Path2D.Double(s, null)
@@ -2098,9 +2098,9 @@ class SkikoGraphics2D : Graphics2D {
                 return true
             }
 
-            // handle cases where either or both arguments are null
+            // handle cases where either argument is null
             if (p1 == null) {
-                return p2 == null
+                return false
             }
             if (p2 == null) {
                 return false
@@ -2111,21 +2111,31 @@ class SkikoGraphics2D : Graphics2D {
                 return p1 == p2
             }
             if (p1 is GradientPaint && p2 is GradientPaint) {
-                return p1.color1 == p2.color1 && p1.color2 == p2.color2 && p1.point1 == p2.point1 && p1.point2 == p2.point2 && p1.isCyclic == p2.isCyclic && p1.transparency == p1.transparency
+                return p1.color1 == p2.color1
+                        && p1.color2 == p2.color2
+                        && p1.point1 == p2.point1 &&
+                        p1.point2 == p2.point2
+                        && p1.isCyclic == p2.isCyclic
+                        && p1.transparency == p1.transparency
             }
             if (p1 is LinearGradientPaint && p2 is LinearGradientPaint) {
-                return (p1.startPoint == p2.startPoint && p1.endPoint == p2.endPoint && Arrays.equals(
-                    p1.fractions, p2.fractions
-                ) && Arrays.equals(
-                    p1.colors, p2.colors
-                ) && p1.cycleMethod == p2.cycleMethod) && p1.colorSpace == p2.colorSpace && p1.transform == p2.transform
+                return p1.startPoint == p2.startPoint
+                        && p1.endPoint == p2.endPoint
+                        && Arrays.equals(p1.fractions, p2.fractions)
+                        && Arrays.equals(p1.colors, p2.colors)
+                        && p1.cycleMethod == p2.cycleMethod
+                        && p1.colorSpace == p2.colorSpace
+                        && p1.transform == p2.transform
             }
             if (p1 is RadialGradientPaint && p2 is RadialGradientPaint) {
-                return (p1.centerPoint == p2.centerPoint && p1.radius == p2.radius && p1.focusPoint == p2.focusPoint && Arrays.equals(
-                    p1.fractions, p2.fractions
-                ) && Arrays.equals(
-                    p1.colors, p2.colors
-                ) && p1.cycleMethod == p2.cycleMethod) && p1.colorSpace == p2.colorSpace && p1.transform == p2.transform
+                return p1.centerPoint == p2.centerPoint
+                        && p1.radius == p2.radius
+                        && p1.focusPoint == p2.focusPoint
+                        && Arrays.equals(p1.fractions, p2.fractions)
+                        && Arrays.equals(p1.colors, p2.colors)
+                        && p1.cycleMethod == p2.cycleMethod
+                        && p1.colorSpace == p2.colorSpace
+                        && p1.transform == p2.transform
             }
             return p1 == p2
         }
@@ -2162,7 +2172,6 @@ class SkikoGraphics2D : Graphics2D {
         }
 
         private fun convertToSkikoImage(image: BufferedImage): org.jetbrains.skia.Image {
-            // TODO: monitor performance:
             val w = image.width
             val h = image.height
             val db = image.raster.dataBuffer as java.awt.image.DataBufferInt
@@ -2176,8 +2185,6 @@ class SkikoGraphics2D : Graphics2D {
                 bytes[i * 4] = (p and 0xFF).toByte()
             }
             val imageInfo = ImageInfo(w, h, ColorType.BGRA_8888, ColorAlphaType.UNPREMUL)
-
-            // LOGGER.info("convertToSkikoImage(): {}", imageInfo);
             return org.jetbrains.skia.Image.makeRaster(imageInfo, bytes, 4 * w)
         }
     }

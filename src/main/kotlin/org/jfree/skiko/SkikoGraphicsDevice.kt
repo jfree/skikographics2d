@@ -41,7 +41,8 @@ import java.awt.GraphicsDevice
 /**
  * A graphics device for SkikoGraphics2D.
  */
-class SkikoGraphicsDevice(private val id: String, private val defaultConfig: GraphicsConfiguration) : GraphicsDevice() {
+class SkikoGraphicsDevice(private val id: String, private val defaultConfiguration: GraphicsConfiguration) :
+    GraphicsDevice() {
 
     /**
      * Returns the device type.
@@ -76,6 +77,6 @@ class SkikoGraphicsDevice(private val id: String, private val defaultConfig: Gra
      * @return The default configuration for this device.
      */
     override fun getDefaultConfiguration(): GraphicsConfiguration {
-        return defaultConfig
+        return defaultConfiguration
     }
 }

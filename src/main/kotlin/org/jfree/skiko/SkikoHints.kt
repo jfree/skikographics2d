@@ -46,6 +46,7 @@ import java.util.function.Function
  *
  */
 object SkikoHints {
+
     /**
      * The key for the hint that provides a font mapper from Java logical fonts to corresponding
      * physical fonts.  A `Function<String, String>` instance (or `null`) can be assigned

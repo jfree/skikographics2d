@@ -45,6 +45,7 @@ import java.awt.image.VolatileImage
  * A graphics configuration for the [SkikoGraphics2D] class.
  */
 class SkikoGraphicsConfiguration(private val width: Int, private val height: Int) : GraphicsConfiguration() {
+
     private var device: GraphicsDevice? = null
 
     /**
