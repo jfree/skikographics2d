@@ -1633,7 +1633,7 @@ class SkikoGraphics2D : Graphics2D {
         if (debugLogEnabled) {
             LOGGER.debug("drawArc({}, {}, {}, {}, {}, {})", x, y, width, height, startAngle, arcAngle)
         }
-        draw(arc(x, y, width, height, startAngle, arcAngle))
+        draw(arc(x, y, width, height, startAngle, arcAngle, Arc2D.OPEN))
     }
 
     /**
@@ -1657,7 +1657,7 @@ class SkikoGraphics2D : Graphics2D {
         if (debugLogEnabled) {
             LOGGER.debug("fillArc({}, {}, {}, {}, {}, {})", x, y, width, height, startAngle, arcAngle)
         }
-        fill(arc(x, y, width, height, startAngle, arcAngle))
+        fill(arc(x, y, width, height, startAngle, arcAngle, Arc2D.PIE))
     }
 
     /**
@@ -1671,11 +1671,12 @@ class SkikoGraphics2D : Graphics2D {
      * @param height  the height.
      * @param startAngle  the start angle in degrees, 0 = 3 o'clock.
      * @param arcAngle  the angle (anticlockwise) in degrees.
+     * @param arcStyle  the arc style.
      *
      * @return An arc (never `null`).
      */
     private fun arc(
-        x: Int, y: Int, width: Int, height: Int, startAngle: Int, arcAngle: Int
+        x: Int, y: Int, width: Int, height: Int, startAngle: Int, arcAngle: Int, arcStyle: Int
     ): Arc2D {
         arc.setArc(
             x.toDouble(),
@@ -1684,7 +1685,7 @@ class SkikoGraphics2D : Graphics2D {
             height.toDouble(),
             startAngle.toDouble(),
             arcAngle.toDouble(),
-            Arc2D.OPEN
+            arcStyle
         )
         return arc
     }
