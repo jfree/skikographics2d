@@ -1,7 +1,7 @@
 SkikoGraphics2D
 ===============
 
-Version 1.0.0-SNAPSHOT, 31 January 2023
+Version 1.0.0, 5 February 2023
 
 Overview
 --------
@@ -25,7 +25,7 @@ To include `SkikoGraphics2D` in your own project, add the following Maven depend
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>org.jfree.skikographics2d</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
 
 Build
@@ -37,7 +37,7 @@ You can build `SkikoGraphics2D` from sources using Maven:
 History
 -------
 
-##### Version 1.0.0 : not yet released
+##### Version 1.0.0 : 5 February 2023
 - initial public release.
 
 License
