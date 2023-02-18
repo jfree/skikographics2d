@@ -16,7 +16,7 @@ Testing
 -------
 **SkikoGraphics2D** is being tested using [Graphics2D Tester](https://github.com/jfree/graphics2d-tester) and produces the output shown below and now matches Java2D quite closely:
 
-![skikographics2d](https://user-images.githubusercontent.com/1835893/216835385-fc1a00b1-d728-41f2-9184-89f627feae2e.png)
+![skikographics2d](https://user-images.githubusercontent.com/1835893/219845061-01f1d439-cce6-4522-9b36-a0e90482a217.png)
 
 Include
 -------
