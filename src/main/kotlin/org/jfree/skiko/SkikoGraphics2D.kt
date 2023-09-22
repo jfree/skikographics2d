@@ -219,6 +219,11 @@ class SkikoGraphics2D : Graphics2D {
      */
     private fun init(canvas: org.jetbrains.skia.Canvas) {
         this.canvas = canvas
+        
+        // Set Graphics2D transform to the same transform as the canvas.
+        val m = canvas.localToDeviceAsMatrix33.mat
+        transform(AffineTransform(m[0].toDouble(),m[3].toDouble(),m[1].toDouble(),m[4].toDouble(),m[2].toDouble(),m[5].toDouble()))
+
         if (getRenderingHint(SkikoHints.KEY_FONT_MAPPING_FUNCTION) == null) {
             setRenderingHint(SkikoHints.KEY_FONT_MAPPING_FUNCTION, Function { s: String ->
                 FONT_MAPPING[s]
